@@ -43,6 +43,7 @@ airflow_lab1/
 ├── .env                              # Environment variables
 ├── start-airflow.ps1                 # Windows startup script
 ├── stop-airflow.ps1                  # Windows shutdown script
+├── assets/                           # images for README.md
 └── README.md                         # This file
 ```
 
