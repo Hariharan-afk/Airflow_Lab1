@@ -1,0 +1,196 @@
+[2025-11-04T02:30:55.703+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-11-04T02:30:55.713+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 02_monitoring_pipeline.monitor_batch_9 manual__2025-11-04T02:30:49.085012+00:00 [queued]>
+[2025-11-04T02:30:55.717+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 02_monitoring_pipeline.monitor_batch_9 manual__2025-11-04T02:30:49.085012+00:00 [queued]>
+[2025-11-04T02:30:55.718+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2025-11-04T02:30:55.724+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): monitor_batch_9> on 2025-11-04 02:30:49.085012+00:00
+[2025-11-04T02:30:55.730+0000] {standard_task_runner.py:72} INFO - Started process 4364 to run task
+[2025-11-04T02:30:55.733+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', '02_monitoring_pipeline', 'monitor_batch_9', 'manual__2025-11-04T02:30:49.085012+00:00', '--job-id', '40', '--raw', '--subdir', 'DAGS_FOLDER/02_monitoring_pipeline.py', '--cfg-path', '/tmp/tmpprwbg9mt']
+[2025-11-04T02:30:55.736+0000] {standard_task_runner.py:105} INFO - Job 40: Subtask monitor_batch_9
+[2025-11-04T02:30:55.769+0000] {task_command.py:467} INFO - Running <TaskInstance: 02_monitoring_pipeline.monitor_batch_9 manual__2025-11-04T02:30:49.085012+00:00 [running]> on host 1008f8fef9d0
+[2025-11-04T02:30:55.815+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops_team' AIRFLOW_CTX_DAG_ID='02_monitoring_pipeline' AIRFLOW_CTX_TASK_ID='monitor_batch_9' AIRFLOW_CTX_EXECUTION_DATE='2025-11-04T02:30:49.085012+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-11-04T02:30:49.085012+00:00'
+[2025-11-04T02:30:55.816+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-11-04T02:30:55.823+0000] {logging_mixin.py:190} INFO - 
+================================================================================
+[2025-11-04T02:30:55.824+0000] {logging_mixin.py:190} INFO - 🔍 MONITORING BATCH 9
+[2025-11-04T02:30:55.824+0000] {logging_mixin.py:190} INFO - ================================================================================
+[2025-11-04T02:30:55.829+0000] {logging_mixin.py:190} INFO - 📥 Step 1: Loading Batch 9 data...
+[2025-11-04T02:30:55.833+0000] {logging_mixin.py:190} INFO - 📄 Loading batch 9 from data/raw/batch9.dat
+[2025-11-04T02:30:55.867+0000] {logging_mixin.py:190} INFO - ✅ Loaded 470 samples from batch 9
+[2025-11-04T02:30:55.869+0000] {logging_mixin.py:190} INFO -    Class distribution: {1: 61, 2: 55, 3: 100, 4: 75, 5: 78, 6: 101}
+[2025-11-04T02:30:55.869+0000] {logging_mixin.py:190} INFO - 
+🤖 Step 2: Loading trained model and scaler...
+[2025-11-04T02:30:55.887+0000] {logging_mixin.py:190} INFO - 📂 Loaded model from: models/latest_model.pkl
+[2025-11-04T02:30:55.889+0000] {logging_mixin.py:190} INFO - 📂 Loaded metadata from: models/latest_model_metadata.json
+[2025-11-04T02:30:55.890+0000] {logging_mixin.py:190} INFO - 
+⚙️ Step 3: Scaling features...
+[2025-11-04T02:30:55.898+0000] {logging_mixin.py:190} INFO - 
+📊 Step 4: Loading baseline metrics...
+[2025-11-04T02:30:55.900+0000] {logging_mixin.py:190} INFO - 
+📚 Step 5: Loading reference (training) data...
+[2025-11-04T02:30:56.018+0000] {logging_mixin.py:190} INFO - 
+🎯 Step 6: Evaluating model on Batch 9...
+[2025-11-04T02:30:56.027+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.11/site-packages/sklearn/ensemble/_base.py:168 UserWarning: Loky-backed parallel loops cannot be called in a multiprocessing, setting n_jobs=1
+[2025-11-04T02:30:56.031+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.11/site-packages/sklearn/ensemble/_base.py:168 UserWarning: Loky-backed parallel loops cannot be called in a multiprocessing, setting n_jobs=1
+[2025-11-04T02:30:56.054+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2025-11-04T02:30:56.054+0000] {logging_mixin.py:190} INFO - 📊 EVALUATION RESULTS - BATCH 9
+[2025-11-04T02:30:56.054+0000] {logging_mixin.py:190} INFO - ============================================================
+[2025-11-04T02:30:56.055+0000] {logging_mixin.py:190} INFO - 
+📈 Overall Metrics:
+[2025-11-04T02:30:56.055+0000] {logging_mixin.py:190} INFO -    Samples:         470
+[2025-11-04T02:30:56.056+0000] {logging_mixin.py:190} INFO -    Accuracy:        0.6128
+[2025-11-04T02:30:56.056+0000] {logging_mixin.py:190} INFO -    Precision (macro): 0.4749
+[2025-11-04T02:30:56.057+0000] {logging_mixin.py:190} INFO -    Recall (macro):    0.6538
+[2025-11-04T02:30:56.057+0000] {logging_mixin.py:190} INFO -    F1-Score (macro):  0.5403
+[2025-11-04T02:30:56.057+0000] {logging_mixin.py:190} INFO - 
+🎯 Per-Class Performance:
+[2025-11-04T02:30:56.058+0000] {logging_mixin.py:190} INFO -    Class Name            Precision  Recall     F1-Score   Support   
+[2025-11-04T02:30:56.058+0000] {logging_mixin.py:190} INFO -    ----------------------------------------------------------------------
+[2025-11-04T02:30:56.059+0000] {logging_mixin.py:190} INFO -    1     Ethanol         0.8356     1.0000     0.9104     61        
+[2025-11-04T02:30:56.059+0000] {logging_mixin.py:190} INFO -    2     Ethylene        0.9649     1.0000     0.9821     55        
+[2025-11-04T02:30:56.059+0000] {logging_mixin.py:190} INFO -    3     Ammonia         0.4587     1.0000     0.6289     100       
+[2025-11-04T02:30:56.060+0000] {logging_mixin.py:190} INFO -    4     Acetaldehyde    0.0000     0.0000     0.0000     75        
+[2025-11-04T02:30:56.060+0000] {logging_mixin.py:190} INFO -    5     Acetone         0.5902     0.9231     0.7200     78        
+[2025-11-04T02:30:56.060+0000] {logging_mixin.py:190} INFO -    6     Toluene         0.0000     0.0000     0.0000     101       
+[2025-11-04T02:30:56.060+0000] {logging_mixin.py:190} INFO - 
+🔮 Prediction Confidence:
+[2025-11-04T02:30:56.061+0000] {logging_mixin.py:190} INFO -    Mean:   0.5819
+[2025-11-04T02:30:56.061+0000] {logging_mixin.py:190} INFO -    Median: 0.6630
+[2025-11-04T02:30:56.061+0000] {logging_mixin.py:190} INFO -    Std:    0.2012
+[2025-11-04T02:30:56.062+0000] {logging_mixin.py:190} INFO -    Range:  [0.2797, 0.8667]
+[2025-11-04T02:30:56.062+0000] {logging_mixin.py:190} INFO - 
+❌ Misclassification Analysis:
+[2025-11-04T02:30:56.062+0000] {logging_mixin.py:190} INFO -    Misclassified: 182 (38.72%)
+[2025-11-04T02:30:56.062+0000] {logging_mixin.py:190} INFO -    Low Confidence (<0.6): 222
+[2025-11-04T02:30:56.063+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2025-11-04T02:30:56.065+0000] {logging_mixin.py:190} INFO - 💾 Saved evaluation report to: data/drift_reports/batch9_evaluation.json
+[2025-11-04T02:30:56.065+0000] {logging_mixin.py:190} INFO - 
+📈 Step 7: Comparing performance with baseline...
+[2025-11-04T02:30:56.065+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2025-11-04T02:30:56.066+0000] {logging_mixin.py:190} INFO - 📊 COMPARISON: Training (Baseline) vs Batch 9
+[2025-11-04T02:30:56.066+0000] {logging_mixin.py:190} INFO - ============================================================
+[2025-11-04T02:30:56.066+0000] {logging_mixin.py:190} INFO - 
+📈 Overall Metric Changes:
+[2025-11-04T02:30:56.067+0000] {logging_mixin.py:190} INFO -    Accuracy:             -38.59%
+[2025-11-04T02:30:56.067+0000] {logging_mixin.py:190} INFO -    F1-Score (macro):     -45.81%
+[2025-11-04T02:30:56.067+0000] {logging_mixin.py:190} INFO -    Confidence (mean):    -0.3994
+[2025-11-04T02:30:56.067+0000] {logging_mixin.py:190} INFO -    Misclassif. Rate:     +38.59%
+[2025-11-04T02:30:56.071+0000] {logging_mixin.py:190} INFO - 
+⚠️ Performance Degradation Alerts:
+[2025-11-04T02:30:56.071+0000] {logging_mixin.py:190} INFO -    🔴 Accuracy dropped by 38.59% (threshold: 5.0%)
+[2025-11-04T02:30:56.072+0000] {logging_mixin.py:190} INFO -    🔴 F1-Score dropped by 45.81% (threshold: 5.0%)
+[2025-11-04T02:30:56.072+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2025-11-04T02:30:56.072+0000] {logging_mixin.py:190} INFO - 
+🔬 Step 8: Detecting statistical drift...
+[2025-11-04T02:30:56.076+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2025-11-04T02:30:56.076+0000] {logging_mixin.py:190} INFO - 🔬 COMPREHENSIVE DRIFT ANALYSIS - BATCH 9
+[2025-11-04T02:30:56.076+0000] {logging_mixin.py:190} INFO - ============================================================
+[2025-11-04T02:30:56.079+0000] {logging_mixin.py:190} INFO - 
+🔍 Detecting drift in 20 features...
+[2025-11-04T02:30:56.228+0000] {logging_mixin.py:190} INFO - 
+🏷️ Detecting label distribution drift...
+[2025-11-04T02:30:56.231+0000] {logging_mixin.py:190} INFO -    Chi-square p-value: 0.0000
+[2025-11-04T02:30:56.231+0000] {logging_mixin.py:190} INFO -    KL Divergence: 0.2370
+[2025-11-04T02:30:56.232+0000] {logging_mixin.py:190} INFO -    PSI: 0.4620
+[2025-11-04T02:30:56.232+0000] {logging_mixin.py:190} INFO -    Drift detected: Yes
+[2025-11-04T02:30:56.232+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2025-11-04T02:30:56.233+0000] {logging_mixin.py:190} INFO - 🔍 STATISTICAL DRIFT DETECTION - BATCH 9
+[2025-11-04T02:30:56.233+0000] {logging_mixin.py:190} INFO - ============================================================
+[2025-11-04T02:30:56.233+0000] {logging_mixin.py:190} INFO - 
+📊 Drift Detection Summary:
+[2025-11-04T02:30:56.234+0000] {logging_mixin.py:190} INFO -    Features Tested: 20
+[2025-11-04T02:30:56.234+0000] {logging_mixin.py:190} INFO -    Total Features with Drift: 20
+[2025-11-04T02:30:56.234+0000] {logging_mixin.py:190} INFO -    - PSI Drift:          20
+[2025-11-04T02:30:56.235+0000] {logging_mixin.py:190} INFO -    - KS Test Drift:      20
+[2025-11-04T02:30:56.235+0000] {logging_mixin.py:190} INFO -    - Wasserstein Drift:  0
+[2025-11-04T02:30:56.235+0000] {logging_mixin.py:190} INFO - 
+⚠️ DRIFT DETECTED!
+[2025-11-04T02:30:56.235+0000] {logging_mixin.py:190} INFO - 
+   Top Drifted Features (by PSI):
+[2025-11-04T02:30:56.236+0000] {logging_mixin.py:190} INFO -        1. feature_58: PSI=13.5127, KS_p=0.0000, Wass=0.0008
+[2025-11-04T02:30:56.236+0000] {logging_mixin.py:190} INFO -        2. feature_69: PSI=9.3761, KS_p=0.0000, Wass=0.1016
+[2025-11-04T02:30:56.236+0000] {logging_mixin.py:190} INFO -        3. feature_108: PSI=9.1136, KS_p=0.0000, Wass=0.1032
+[2025-11-04T02:30:56.237+0000] {logging_mixin.py:190} INFO -        4. feature_80: PSI=9.0966, KS_p=0.0000, Wass=0.0809
+[2025-11-04T02:30:56.237+0000] {logging_mixin.py:190} INFO -        5. feature_9: PSI=9.0201, KS_p=0.0000, Wass=0.1849
+[2025-11-04T02:30:56.237+0000] {logging_mixin.py:190} INFO -        6. feature_72: PSI=9.0003, KS_p=0.0000, Wass=0.0771
+[2025-11-04T02:30:56.238+0000] {logging_mixin.py:190} INFO -        7. feature_2: PSI=8.8393, KS_p=0.0000, Wass=0.0077
+[2025-11-04T02:30:56.238+0000] {logging_mixin.py:190} INFO -        8. feature_124: PSI=8.7998, KS_p=0.0000, Wass=0.0739
+[2025-11-04T02:30:56.238+0000] {logging_mixin.py:190} INFO -        9. feature_101: PSI=8.7997, KS_p=0.0000, Wass=0.0187
+[2025-11-04T02:30:56.239+0000] {logging_mixin.py:190} INFO -       10. feature_66: PSI=8.7817, KS_p=0.0000, Wass=0.0633
+[2025-11-04T02:30:56.239+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2025-11-04T02:30:56.245+0000] {logging_mixin.py:190} INFO - 💾 Saved drift report to: data/drift_reports/drift_report_batch9_20251104_023056.json
+[2025-11-04T02:30:56.245+0000] {logging_mixin.py:190} INFO - 
+📉 Step 9: Monitoring performance degradation...
+[2025-11-04T02:30:56.245+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2025-11-04T02:30:56.246+0000] {logging_mixin.py:190} INFO - 📊 COMPREHENSIVE PERFORMANCE MONITORING - BATCH 9
+[2025-11-04T02:30:56.246+0000] {logging_mixin.py:190} INFO - ============================================================
+[2025-11-04T02:30:56.249+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2025-11-04T02:30:56.249+0000] {logging_mixin.py:190} INFO - 📉 PERFORMANCE DEGRADATION MONITORING - BATCH 9
+[2025-11-04T02:30:56.249+0000] {logging_mixin.py:190} INFO - ============================================================
+[2025-11-04T02:30:56.249+0000] {logging_mixin.py:190} INFO - 
+📊 Performance Changes:
+[2025-11-04T02:30:56.250+0000] {logging_mixin.py:190} INFO -    Accuracy:       0.9987 → 0.6128 (-0.3859)
+[2025-11-04T02:30:56.250+0000] {logging_mixin.py:190} INFO -    F1-Score:       0.9983 → 0.5403 (-0.4581)
+[2025-11-04T02:30:56.250+0000] {logging_mixin.py:190} INFO -    Precision:      0.9991 → 0.4749 (-0.5242)
+[2025-11-04T02:30:56.251+0000] {logging_mixin.py:190} INFO -    Recall:         0.9975 → 0.6538 (-0.3437)
+[2025-11-04T02:30:56.251+0000] {logging_mixin.py:190} INFO -    Confidence:     0.9814 → 0.5819 (-0.3994)
+[2025-11-04T02:30:56.251+0000] {logging_mixin.py:190} INFO - 
+⚠️ Degradation Analysis:
+[2025-11-04T02:30:56.252+0000] {logging_mixin.py:190} INFO -    🔴 PERFORMANCE DEGRADATION DETECTED!
+[2025-11-04T02:30:56.252+0000] {logging_mixin.py:190} INFO -       - Accuracy change (38.59%) exceeds threshold (5.0%)
+[2025-11-04T02:30:56.252+0000] {logging_mixin.py:190} INFO -       - F1-Score change (45.81%) exceeds threshold (5.0%)
+[2025-11-04T02:30:56.253+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2025-11-04T02:30:56.253+0000] {logging_mixin.py:190} INFO - 
+🔮 Analyzing Prediction Confidence Drift - Batch 9
+[2025-11-04T02:30:56.256+0000] {logging_mixin.py:190} INFO -    Mean Confidence: 0.9814 → 0.5819 (-0.3994)
+[2025-11-04T02:30:56.256+0000] {logging_mixin.py:190} INFO -    Std Confidence:  0.0569 → 0.2012 (+0.1443)
+[2025-11-04T02:30:56.256+0000] {logging_mixin.py:190} INFO -    ⚠️ WARNING: Mean confidence (0.5819) below threshold (0.6)
+[2025-11-04T02:30:56.259+0000] {logging_mixin.py:190} INFO - 
+🎯 Analyzing Misclassification Patterns - Batch 9
+[2025-11-04T02:30:56.260+0000] {logging_mixin.py:190} INFO -    Found 4 significant changes in misclassification patterns:
+[2025-11-04T02:30:56.260+0000] {logging_mixin.py:190} INFO -       1. Toluene → Ammonia: +0.901
+[2025-11-04T02:30:56.261+0000] {logging_mixin.py:190} INFO -       2. Acetaldehyde → Acetone: +0.667
+[2025-11-04T02:30:56.261+0000] {logging_mixin.py:190} INFO -       3. Acetaldehyde → Ammonia: +0.333
+[2025-11-04T02:30:56.261+0000] {logging_mixin.py:190} INFO -       4. Toluene → Ethanol: +0.087
+[2025-11-04T02:30:56.262+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2025-11-04T02:30:56.262+0000] {logging_mixin.py:190} INFO - 🎯 OVERALL ASSESSMENT:
+[2025-11-04T02:30:56.262+0000] {logging_mixin.py:190} INFO -    🔴 CONCEPT DRIFT DETECTED - Model performance degraded!
+[2025-11-04T02:30:56.262+0000] {logging_mixin.py:190} INFO -    📌 Recommendation: Consider retraining the model
+[2025-11-04T02:30:56.263+0000] {logging_mixin.py:190} INFO - ============================================================
+[2025-11-04T02:30:56.269+0000] {logging_mixin.py:190} INFO - 💾 Saved performance report to: data/drift_reports/performance_report_batch9_20251104_023056.json
+[2025-11-04T02:30:56.269+0000] {logging_mixin.py:190} INFO - 
+================================================================================
+[2025-11-04T02:30:56.269+0000] {logging_mixin.py:190} INFO - 🎯 OVERALL DRIFT ASSESSMENT - BATCH 9
+[2025-11-04T02:30:56.270+0000] {logging_mixin.py:190} INFO - ================================================================================
+[2025-11-04T02:30:56.270+0000] {logging_mixin.py:190} INFO - 
+📊 Drift Detection Summary:
+[2025-11-04T02:30:56.270+0000] {logging_mixin.py:190} INFO -    Statistical Drift (Feature Distribution): 🔴 DETECTED
+[2025-11-04T02:30:56.271+0000] {logging_mixin.py:190} INFO -    Performance Drift (Model Degradation):   🔴 DETECTED
+[2025-11-04T02:30:56.271+0000] {logging_mixin.py:190} INFO - 
+⚠️ DRIFT DETECTED IN BATCH 9!
+[2025-11-04T02:30:56.272+0000] {logging_mixin.py:190} INFO - 
+   📌 Recommendations:
+[2025-11-04T02:30:56.272+0000] {logging_mixin.py:190} INFO -       - Feature distributions have shifted significantly
+[2025-11-04T02:30:56.272+0000] {logging_mixin.py:190} INFO -       - Input data characteristics are changing
+[2025-11-04T02:30:56.273+0000] {logging_mixin.py:190} INFO -       - Model performance has degraded
+[2025-11-04T02:30:56.273+0000] {logging_mixin.py:190} INFO -       - Relationship between features and labels may have changed
+[2025-11-04T02:30:56.273+0000] {logging_mixin.py:190} INFO -       - Consider retraining the model with recent data
+[2025-11-04T02:30:56.274+0000] {logging_mixin.py:190} INFO -       - Review data collection process for anomalies
+[2025-11-04T02:30:56.274+0000] {logging_mixin.py:190} INFO - 
+================================================================================
+[2025-11-04T02:30:56.303+0000] {python.py:240} INFO - Done. Returned value was: {'batch_id': 9, 'accuracy': 0.6127659574468085, 'f1_macro': 0.5402535726578249, 'statistical_drift': True, 'performance_drift': True, 'drift_detected': True}
+[2025-11-04T02:30:56.312+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-11-04T02:30:56.313+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=02_monitoring_pipeline, task_id=monitor_batch_9, run_id=manual__2025-11-04T02:30:49.085012+00:00, execution_date=20251104T023049, start_date=20251104T023055, end_date=20251104T023056
+[2025-11-04T02:30:56.349+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-11-04T02:30:56.363+0000] {taskinstance.py:3895} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-11-04T02:30:56.365+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

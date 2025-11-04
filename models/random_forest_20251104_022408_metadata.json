@@ -1,0 +1,123 @@
+{
+  "model_type": "RandomForest",
+  "training_date": "2025-11-04T02:24:08.349796",
+  "train_batches": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "n_samples": 5933,
+  "n_features": 128,
+  "model_params": {
+    "n_estimators": 100,
+    "max_depth": 20,
+    "min_samples_split": 5,
+    "min_samples_leaf": 2,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "training_accuracy": 0.9986516096409911,
+  "cv_results": {
+    "mean_accuracy": 0.9915711357532606,
+    "std_accuracy": 0.004267042553493024,
+    "min_accuracy": 0.9831365935919055,
+    "max_accuracy": 0.9983164983164983,
+    "fold_scores": [
+      0.9983164983164983,
+      0.9915824915824916,
+      0.9932659932659933,
+      0.9949409780775716,
+      0.9932546374367622,
+      0.9915682967959528,
+      0.984822934232715,
+      0.9915682967959528,
+      0.9932546374367622,
+      0.9831365935919055
+    ]
+  },
+  "top_features": [
+    {
+      "feature": "feature_72",
+      "importance": 0.0322880866913167
+    },
+    {
+      "feature": "feature_16",
+      "importance": 0.03151433602552993
+    },
+    {
+      "feature": "feature_6",
+      "importance": 0.02792830015680808
+    },
+    {
+      "feature": "feature_100",
+      "importance": 0.027844046388996645
+    },
+    {
+      "feature": "feature_8",
+      "importance": 0.02494313133352442
+    },
+    {
+      "feature": "feature_9",
+      "importance": 0.021821340797826223
+    },
+    {
+      "feature": "feature_108",
+      "importance": 0.021775683970135438
+    },
+    {
+      "feature": "feature_101",
+      "importance": 0.021474461878587273
+    },
+    {
+      "feature": "feature_10",
+      "importance": 0.021244378707441034
+    },
+    {
+      "feature": "feature_124",
+      "importance": 0.020164928979700472
+    },
+    {
+      "feature": "feature_80",
+      "importance": 0.01993011950921392
+    },
+    {
+      "feature": "feature_14",
+      "importance": 0.01974364061151059
+    },
+    {
+      "feature": "feature_12",
+      "importance": 0.01848329020580043
+    },
+    {
+      "feature": "feature_69",
+      "importance": 0.01847902973163024
+    },
+    {
+      "feature": "feature_109",
+      "importance": 0.018346449433990056
+    },
+    {
+      "feature": "feature_44",
+      "importance": 0.017409295224667953
+    },
+    {
+      "feature": "feature_58",
+      "importance": 0.016978233603210536
+    },
+    {
+      "feature": "feature_66",
+      "importance": 0.01682578686019735
+    },
+    {
+      "feature": "feature_2",
+      "importance": 0.01575456709020885
+    },
+    {
+      "feature": "feature_71",
+      "importance": 0.01563975060913514
+    }
+  ]
+}

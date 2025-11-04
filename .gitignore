@@ -1,0 +1,19 @@
+venv/
+
+
+# Ignore everything under data by default
+data/*
+
+# Keep the raw data folder and its contents
+!data/raw/
+!data/raw/**
+
+# Keep the subfolders themselves but not their contents
+!data/processed/
+!data/drift_reports/
+
+# Inside processed/ and drift_reports/, ignore everything except .gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/drift_reports/*
+!data/drift_reports/.gitkeep

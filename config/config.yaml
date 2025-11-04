@@ -1,0 +1,78 @@
+# Gas Sensor Drift Detection - Configuration File
+
+# Paths
+paths:
+  raw_data: "data/raw"
+  processed_data: "data/processed"
+  models: "models"
+  drift_reports: "data/drift_reports"
+  logs: "logs"
+
+# Data Configuration
+data:
+  num_batches: 10
+  num_features: 128
+  num_sensors: 16
+  features_per_sensor: 8
+  
+  # Class labels
+  classes:
+    1: "Ethanol"
+    2: "Ethylene"
+    3: "Ammonia"
+    4: "Acetaldehyde"
+    5: "Acetone"
+    6: "Toluene"
+  
+  # Train-test split
+  train_batches: [1, 2, 3, 4, 5, 6]
+  test_batches: [7, 8, 9, 10]
+
+# Model Configuration
+model:
+  type: "RandomForest"
+  params:
+    n_estimators: 100
+    max_depth: 20
+    min_samples_split: 5
+    min_samples_leaf: 2
+    random_state: 42
+    n_jobs: -1
+  
+  # Scaling
+  scale_features: true
+  scaler_range: [-1, 1]  # Following dataset documentation
+
+# Drift Detection Configuration
+drift:
+  # Statistical Tests
+  statistical:
+    ks_test_threshold: 0.05  # p-value threshold
+    psi_threshold: 0.2       # PSI > 0.2 indicates significant drift
+    wasserstein_threshold: 0.3
+    
+  # Performance Monitoring
+  performance:
+    accuracy_drop_threshold: 0.05  # 5% drop triggers alert
+    f1_drop_threshold: 0.05
+    min_confidence_threshold: 0.6
+  
+  # Feature importance monitoring
+  feature_drift:
+    top_n_features: 20  # Monitor top N important features
+    
+# Reporting
+reporting:
+  generate_plots: true
+  save_detailed_reports: true
+  alert_on_drift: true
+
+# Airflow Configuration
+airflow:
+  default_args:
+    owner: "mlops_team"
+    retries: 2
+    retry_delay_minutes: 5
+  
+  training_schedule: null  # Run manually or "@once"
+  monitoring_schedule: null  # Run manually for this lab

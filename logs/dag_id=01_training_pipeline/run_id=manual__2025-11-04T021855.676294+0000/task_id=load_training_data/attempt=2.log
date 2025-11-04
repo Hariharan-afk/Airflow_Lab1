@@ -1,0 +1,57 @@
+[2025-11-04T02:23:57.943+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-11-04T02:23:57.954+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 01_training_pipeline.load_training_data manual__2025-11-04T02:18:55.676294+00:00 [queued]>
+[2025-11-04T02:23:57.958+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 01_training_pipeline.load_training_data manual__2025-11-04T02:18:55.676294+00:00 [queued]>
+[2025-11-04T02:23:57.960+0000] {taskinstance.py:2866} INFO - Starting attempt 2 of 3
+[2025-11-04T02:23:57.968+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): load_training_data> on 2025-11-04 02:18:55.676294+00:00
+[2025-11-04T02:23:57.973+0000] {standard_task_runner.py:72} INFO - Started process 2361 to run task
+[2025-11-04T02:23:57.976+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', '01_training_pipeline', 'load_training_data', 'manual__2025-11-04T02:18:55.676294+00:00', '--job-id', '21', '--raw', '--subdir', 'DAGS_FOLDER/01_training_pipeline.py', '--cfg-path', '/tmp/tmp2udcyq5w']
+[2025-11-04T02:23:57.979+0000] {standard_task_runner.py:105} INFO - Job 21: Subtask load_training_data
+[2025-11-04T02:23:58.014+0000] {task_command.py:467} INFO - Running <TaskInstance: 01_training_pipeline.load_training_data manual__2025-11-04T02:18:55.676294+00:00 [running]> on host 1008f8fef9d0
+[2025-11-04T02:23:58.065+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops_team' AIRFLOW_CTX_DAG_ID='01_training_pipeline' AIRFLOW_CTX_TASK_ID='load_training_data' AIRFLOW_CTX_EXECUTION_DATE='2025-11-04T02:18:55.676294+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-11-04T02:18:55.676294+00:00'
+[2025-11-04T02:23:58.066+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-11-04T02:23:58.074+0000] {logging_mixin.py:190} INFO - ============================================================
+[2025-11-04T02:23:58.075+0000] {logging_mixin.py:190} INFO - STEP 1: LOADING TRAINING DATA
+[2025-11-04T02:23:58.075+0000] {logging_mixin.py:190} INFO - ============================================================
+[2025-11-04T02:23:58.079+0000] {logging_mixin.py:190} INFO - 
+📚 Loading training batches: [1, 2, 3, 4, 5, 6]
+[2025-11-04T02:23:58.083+0000] {logging_mixin.py:190} INFO - 📄 Loading batch 1 from data/raw/batch1.dat
+[2025-11-04T02:23:58.115+0000] {logging_mixin.py:190} INFO - ✅ Loaded 445 samples from batch 1
+[2025-11-04T02:23:58.118+0000] {logging_mixin.py:190} INFO -    Class distribution: {1: 90, 2: 98, 3: 83, 4: 30, 5: 70, 6: 74}
+[2025-11-04T02:23:58.121+0000] {logging_mixin.py:190} INFO - 📄 Loading batch 2 from data/raw/batch2.dat
+[2025-11-04T02:23:58.193+0000] {logging_mixin.py:190} INFO - ✅ Loaded 1244 samples from batch 2
+[2025-11-04T02:23:58.194+0000] {logging_mixin.py:190} INFO -    Class distribution: {1: 164, 2: 334, 3: 100, 4: 109, 5: 532, 6: 5}
+[2025-11-04T02:23:58.200+0000] {logging_mixin.py:190} INFO - 📄 Loading batch 3 from data/raw/batch3.dat
+[2025-11-04T02:23:58.295+0000] {logging_mixin.py:190} INFO - ✅ Loaded 1586 samples from batch 3
+[2025-11-04T02:23:58.296+0000] {logging_mixin.py:190} INFO -    Class distribution: {1: 365, 2: 490, 3: 216, 4: 240, 5: 275}
+[2025-11-04T02:23:58.300+0000] {logging_mixin.py:190} INFO - 📄 Loading batch 4 from data/raw/batch4.dat
+[2025-11-04T02:23:58.312+0000] {logging_mixin.py:190} INFO - ✅ Loaded 161 samples from batch 4
+[2025-11-04T02:23:58.313+0000] {logging_mixin.py:190} INFO -    Class distribution: {1: 64, 2: 43, 3: 12, 4: 30, 5: 12}
+[2025-11-04T02:23:58.316+0000] {logging_mixin.py:190} INFO - 📄 Loading batch 5 from data/raw/batch5.dat
+[2025-11-04T02:23:58.329+0000] {logging_mixin.py:190} INFO - ✅ Loaded 197 samples from batch 5
+[2025-11-04T02:23:58.330+0000] {logging_mixin.py:190} INFO -    Class distribution: {1: 28, 2: 40, 3: 20, 4: 46, 5: 63}
+[2025-11-04T02:23:58.333+0000] {logging_mixin.py:190} INFO - 📄 Loading batch 6 from data/raw/batch6.dat
+[2025-11-04T02:23:58.460+0000] {logging_mixin.py:190} INFO - ✅ Loaded 2300 samples from batch 6
+[2025-11-04T02:23:58.461+0000] {logging_mixin.py:190} INFO -    Class distribution: {1: 514, 2: 574, 3: 110, 4: 29, 5: 606, 6: 467}
+[2025-11-04T02:23:58.465+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2025-11-04T02:23:58.466+0000] {logging_mixin.py:190} INFO - ✅ Combined 6 batches: [1, 2, 3, 4, 5, 6]
+[2025-11-04T02:23:58.466+0000] {logging_mixin.py:190} INFO -    Total samples: 5933
+[2025-11-04T02:23:58.467+0000] {logging_mixin.py:190} INFO -    Features: 128
+[2025-11-04T02:23:58.467+0000] {logging_mixin.py:190} INFO -    Class distribution:
+[2025-11-04T02:23:58.470+0000] {logging_mixin.py:190} INFO -       1 (Ethanol): 1225
+[2025-11-04T02:23:58.474+0000] {logging_mixin.py:190} INFO -       2 (Ethylene): 1579
+[2025-11-04T02:23:58.478+0000] {logging_mixin.py:190} INFO -       3 (Ammonia): 541
+[2025-11-04T02:23:58.482+0000] {logging_mixin.py:190} INFO -       4 (Acetaldehyde): 484
+[2025-11-04T02:23:58.485+0000] {logging_mixin.py:190} INFO -       5 (Acetone): 1558
+[2025-11-04T02:23:58.489+0000] {logging_mixin.py:190} INFO -       6 (Toluene): 546
+[2025-11-04T02:23:58.490+0000] {logging_mixin.py:190} INFO - ============================================================
+[2025-11-04T02:23:58.848+0000] {logging_mixin.py:190} INFO - 
+✅ Training data loaded successfully!
+[2025-11-04T02:23:58.849+0000] {logging_mixin.py:190} INFO -    Shape: (5933, 130)
+[2025-11-04T02:23:58.849+0000] {logging_mixin.py:190} INFO -    Saved to: data/processed/train_raw.csv
+[2025-11-04T02:23:58.864+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-11-04T02:23:58.869+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-11-04T02:23:58.869+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=01_training_pipeline, task_id=load_training_data, run_id=manual__2025-11-04T02:18:55.676294+00:00, execution_date=20251104T021855, start_date=20251104T022357, end_date=20251104T022358
+[2025-11-04T02:23:58.914+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-11-04T02:23:58.927+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-11-04T02:23:58.929+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

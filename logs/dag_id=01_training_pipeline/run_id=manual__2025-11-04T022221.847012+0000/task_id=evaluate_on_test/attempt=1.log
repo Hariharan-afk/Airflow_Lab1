@@ -1,0 +1,60 @@
+[2025-11-04T02:22:36.427+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-11-04T02:22:36.438+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 01_training_pipeline.evaluate_on_test manual__2025-11-04T02:22:21.847012+00:00 [queued]>
+[2025-11-04T02:22:36.443+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 01_training_pipeline.evaluate_on_test manual__2025-11-04T02:22:21.847012+00:00 [queued]>
+[2025-11-04T02:22:36.444+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 3
+[2025-11-04T02:22:36.453+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): evaluate_on_test> on 2025-11-04 02:22:21.847012+00:00
+[2025-11-04T02:22:36.464+0000] {standard_task_runner.py:72} INFO - Started process 2098 to run task
+[2025-11-04T02:22:36.467+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', '01_training_pipeline', 'evaluate_on_test', 'manual__2025-11-04T02:22:21.847012+00:00', '--job-id', '18', '--raw', '--subdir', 'DAGS_FOLDER/01_training_pipeline.py', '--cfg-path', '/tmp/tmpf9p7iwvj']
+[2025-11-04T02:22:36.469+0000] {standard_task_runner.py:105} INFO - Job 18: Subtask evaluate_on_test
+[2025-11-04T02:22:36.503+0000] {task_command.py:467} INFO - Running <TaskInstance: 01_training_pipeline.evaluate_on_test manual__2025-11-04T02:22:21.847012+00:00 [running]> on host 1008f8fef9d0
+[2025-11-04T02:22:36.552+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mlops_team' AIRFLOW_CTX_DAG_ID='01_training_pipeline' AIRFLOW_CTX_TASK_ID='evaluate_on_test' AIRFLOW_CTX_EXECUTION_DATE='2025-11-04T02:22:21.847012+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-11-04T02:22:21.847012+00:00'
+[2025-11-04T02:22:36.553+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-11-04T02:22:36.562+0000] {logging_mixin.py:190} INFO - ============================================================
+[2025-11-04T02:22:36.562+0000] {logging_mixin.py:190} INFO - STEP 6: EVALUATION ON TEST DATA
+[2025-11-04T02:22:36.563+0000] {logging_mixin.py:190} INFO - ============================================================
+[2025-11-04T02:22:36.588+0000] {logging_mixin.py:190} INFO - 📂 Loaded model from: models/latest_model.pkl
+[2025-11-04T02:22:36.590+0000] {logging_mixin.py:190} INFO - 📂 Loaded metadata from: models/latest_model_metadata.json
+[2025-11-04T02:22:36.777+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.11/site-packages/sklearn/ensemble/_base.py:168 UserWarning: Loky-backed parallel loops cannot be called in a multiprocessing, setting n_jobs=1
+[2025-11-04T02:22:36.803+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.11/site-packages/sklearn/ensemble/_base.py:168 UserWarning: Loky-backed parallel loops cannot be called in a multiprocessing, setting n_jobs=1
+[2025-11-04T02:22:36.853+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2025-11-04T02:22:36.853+0000] {logging_mixin.py:190} INFO - 📊 EVALUATION RESULTS
+[2025-11-04T02:22:36.854+0000] {logging_mixin.py:190} INFO - ============================================================
+[2025-11-04T02:22:36.854+0000] {logging_mixin.py:190} INFO - 
+📈 Overall Metrics:
+[2025-11-04T02:22:36.855+0000] {logging_mixin.py:190} INFO -    Samples:         7977
+[2025-11-04T02:22:36.855+0000] {logging_mixin.py:190} INFO -    Accuracy:        0.5960
+[2025-11-04T02:22:36.856+0000] {logging_mixin.py:190} INFO -    Precision (macro): 0.6078
+[2025-11-04T02:22:36.856+0000] {logging_mixin.py:190} INFO -    Recall (macro):    0.5939
+[2025-11-04T02:22:36.857+0000] {logging_mixin.py:190} INFO -    F1-Score (macro):  0.5623
+[2025-11-04T02:22:36.858+0000] {logging_mixin.py:190} INFO - 
+🎯 Per-Class Performance:
+[2025-11-04T02:22:36.858+0000] {logging_mixin.py:190} INFO -    Class Name            Precision  Recall     F1-Score   Support   
+[2025-11-04T02:22:36.858+0000] {logging_mixin.py:190} INFO -    ----------------------------------------------------------------------
+[2025-11-04T02:22:36.859+0000] {logging_mixin.py:190} INFO -    1     Ethanol         0.6079     0.7276     0.6624     1340      
+[2025-11-04T02:22:36.859+0000] {logging_mixin.py:190} INFO -    2     Ethylene        0.5305     0.8530     0.6541     1347      
+[2025-11-04T02:22:36.860+0000] {logging_mixin.py:190} INFO -    3     Ammonia         0.6407     0.5009     0.5622     1100      
+[2025-11-04T02:22:36.860+0000] {logging_mixin.py:190} INFO -    4     Acetaldehyde    0.4785     0.1377     0.2139     1452      
+[2025-11-04T02:22:36.860+0000] {logging_mixin.py:190} INFO -    5     Acetone         0.5920     0.9070     0.7164     1451      
+[2025-11-04T02:22:36.861+0000] {logging_mixin.py:190} INFO -    6     Toluene         0.7975     0.4375     0.5650     1287      
+[2025-11-04T02:22:36.861+0000] {logging_mixin.py:190} INFO - 
+🔮 Prediction Confidence:
+[2025-11-04T02:22:36.861+0000] {logging_mixin.py:190} INFO -    Mean:   0.5652
+[2025-11-04T02:22:36.862+0000] {logging_mixin.py:190} INFO -    Median: 0.5258
+[2025-11-04T02:22:36.862+0000] {logging_mixin.py:190} INFO -    Std:    0.2121
+[2025-11-04T02:22:36.863+0000] {logging_mixin.py:190} INFO -    Range:  [0.2087, 1.0000]
+[2025-11-04T02:22:36.863+0000] {logging_mixin.py:190} INFO - 
+❌ Misclassification Analysis:
+[2025-11-04T02:22:36.863+0000] {logging_mixin.py:190} INFO -    Misclassified: 3223 (40.40%)
+[2025-11-04T02:22:36.864+0000] {logging_mixin.py:190} INFO -    Low Confidence (<0.6): 4880
+[2025-11-04T02:22:36.864+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2025-11-04T02:22:36.867+0000] {logging_mixin.py:190} INFO - 💾 Saved evaluation report to: data/drift_reports/test_metrics_all.json
+[2025-11-04T02:22:36.868+0000] {logging_mixin.py:190} INFO - 
+✅ Test evaluation completed!
+[2025-11-04T02:22:36.882+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-11-04T02:22:36.889+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-11-04T02:22:36.890+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=01_training_pipeline, task_id=evaluate_on_test, run_id=manual__2025-11-04T02:22:21.847012+00:00, execution_date=20251104T022221, start_date=20251104T022236, end_date=20251104T022236
+[2025-11-04T02:22:36.921+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-11-04T02:22:36.935+0000] {taskinstance.py:3895} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-11-04T02:22:36.937+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
