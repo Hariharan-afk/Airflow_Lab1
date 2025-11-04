@@ -17,3 +17,6 @@ data/processed/*
 !data/processed/.gitkeep
 data/drift_reports/*
 !data/drift_reports/.gitkeep
+
+logs/
+plugins/

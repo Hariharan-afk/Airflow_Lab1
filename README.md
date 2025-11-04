@@ -1,16 +1,16 @@
-# Gas Sensor Drift Detection - MLOps Pipeline with Apache Airflow
+# Airflow Lab-1: Gas Sensor Drift Detection - Pipeline with Apache Airflow
 
 ## Project Overview
 
-This project implements an end-to-end MLOps pipeline for detecting drift in gas sensor data using Apache Airflow. The system trains a Random Forest classifier on historical gas sensor readings and monitors for data drift and performance degradation over time.
+This project implements an end-to-end pipeline for detecting drift in gas sensor data using Apache Airflow. The system trains a `Random Forest classifier` on [historical gas sensor readings](https://archive.ics.uci.edu/dataset/224/gas+sensor+array+drift+dataset) and monitors for `data drift` and `performance degradation` over time.
 
 ### Key Features
 
-- **Automated Training Pipeline**: Loads, preprocesses, trains, and evaluates a machine learning model
-- **Drift Detection Pipeline**: Monitors model performance and detects statistical drift across multiple batches
-- **Statistical Analysis**: Uses KS test, PSI (Population Stability Index), and Wasserstein distance
-- **Dockerized Environment**: Full Docker Compose setup for easy deployment
-- **Airflow Orchestration**: Two DAGs managing training and monitoring workflows
+- **Automated Training Pipeline**: Loads, preprocesses, trains, and evaluates the `Random Forest classifier`
+- **Drift Detection Pipeline**: Monitors model performance and detects `statistical drift` across multiple batches of data
+- **Statistical Analysis**: Uses `KS test`, `PSI (Population Stability Index)`, and `Wasserstein distance`
+- **Dockerized Environment**: Full `Docker Compose` setup for easy deployment
+- **Airflow Orchestration**: Two DAGs managing `training` and `monitoring` workflows
 
 ---
 
@@ -62,7 +62,7 @@ airflow_lab1/
 ### 1. Clone the Repository
 
 ```bash
-cd c:\Users\suraj\Hariharan\Assignments\Term3\MLOps\mlops_labs\airflow_lab1
+cd airflow_lab1
 ```
 
 ### 2. Environment Configuration
@@ -107,7 +107,10 @@ docker-compose up -d
 ```powershell
 .\stop-airflow.ps1
 ```
-
+or
+```terminal
+docker-compose down
+```
 #### Linux/Mac
 ```bash
 docker-compose down
@@ -128,22 +131,25 @@ docker-compose down -v
 
 **Workflow Steps**:
 ```
-Load Training Data (Batches 1-6)
-          |
-Load Test Data (Batches 7-10)
-          |
-    Preprocess Data
-          |
-     Train Model
-          |
-   ┌──────┴──────┐
-   │             │
-Evaluate on    Evaluate on
-Training Data  Test Data
-   │             │
-   └──────┬──────┘
-          |
-  Generate Summary
+Load Training Data (Batches 1-6)     Load Test Data (Batches 7-10)
+                     └────────────┬────────────┘
+                                  |
+                                  |
+                            Preprocess Data
+                                  |
+                                  |
+                            Train Model
+                                  |
+                                  |
+                           ┌──────┴──────┐
+                           │             │
+                        Evaluate on    Evaluate on
+                        Training Data  Test Data
+                           │             │
+                           └──────┬──────┘
+                                  |
+                                  |
+                         Generate Summary
 ```
 
 **Tasks**:
@@ -202,6 +208,18 @@ Generate Summary
 
 ## Airflow UI Visualization
 
+### Triggering DAGs
+
+#### Manual Trigger (Recommended)
+1. Go to **DAGs** page
+2. Click the **play button** (▶) on the right side of the DAG name
+3. Confirm trigger
+
+#### Sequence for First Run
+1. **First**: Run `01_training_pipeline` to train the model
+2. **Wait**: Until all tasks show green (success)
+3. **Then**: Run `02_monitoring_pipeline` to detect drift
+
 ### DAG Graph View
 
 #### Training Pipeline
@@ -215,7 +233,7 @@ You'll see:
 - **Parallel evaluation** (baseline and test)
 - **Final summary generation**
 
-![Training Pipeline Structure](docs/training_pipeline_graph.png)
+![Training Pipeline Structure](assets/training_pipeline_graph.png)
 
 #### Monitoring Pipeline
 1. Navigate to **DAGs** tab
@@ -226,19 +244,7 @@ You'll see:
 - **Four parallel monitoring tasks** (one per batch)
 - Each task runs the complete drift detection workflow
 
-![Monitoring Pipeline Structure](docs/monitoring_pipeline_graph.png)
-
-### Triggering DAGs
-
-#### Manual Trigger (Recommended)
-1. Go to **DAGs** page
-2. Click the **play button** (▶) on the right side of the DAG name
-3. Confirm trigger
-
-#### Sequence for First Run
-1. **First**: Run `01_training_pipeline` to train the model
-2. **Wait**: Until all tasks show green (success)
-3. **Then**: Run `02_monitoring_pipeline` to detect drift
+![Monitoring Pipeline Structure](assets/monitoring_pipeline_graph.png)
 
 ### Viewing Task Logs
 
@@ -249,19 +255,6 @@ You'll see:
    - Model performance metrics
    - Drift detection results
    - Error messages (if any)
-
-### Monitoring Execution
-
-**Grid View**: Shows historical runs
-- Green: Success
-- Red: Failed
-- Yellow: Running
-- Grey: Not started
-
-**Calendar View**: Visual timeline of DAG runs
-
-**Code View**: View the DAG Python code directly in UI
-
 ---
 
 ## Understanding the Results
@@ -281,6 +274,7 @@ Located in task logs of `generate_summary`:
    Baseline Accuracy:       0.XXXX
    Test Accuracy (All):     0.XXXX
 ```
+![Training Pipeline Summary](assets/training_pipeline_summary.png)
 
 ### Drift Detection Results
 
@@ -291,7 +285,6 @@ Located in `data/drift_reports/drift_report_batch{X}_{timestamp}.json`:
   "batch_id": 7,
   "timestamp": "2025-11-03T...",
   "overall_drift_detected": true/false,
-  "drift_severity": "low/medium/high",
   "features_with_drift": [...],
   "ks_test_results": {...},
   "psi_results": {...},
@@ -320,6 +313,12 @@ Located in `data/drift_reports/performance_report_batch{X}_{timestamp}.json`:
   "accuracy_drop": 0.XXX
 }
 ```
+
+### Monitoring Pipeline Summary
+
+Located in task logs of `generate_summary`:
+
+![Monitoring Pipeline Summary](assets/monitoring_pipeline_summary.png)
 
 ---
 
@@ -356,138 +355,6 @@ model:
   max_depth: 20
   min_samples_split: 5
   random_state: 42
-```
-
----
-
-## Troubleshooting
-
-### DAGs Not Showing Up
-
-**Issue**: DAGs not visible in Airflow UI
-
-**Solutions**:
-1. Check logs: `docker-compose logs airflow-scheduler`
-2. Verify DAG files have no syntax errors
-3. Refresh the UI (Ctrl+F5)
-4. Check file permissions
-
-### Import Errors
-
-**Issue**: `ModuleNotFoundError: No module named 'src'`
-
-**Solution**: Already fixed in DAG files with:
-```python
-airflow_home = os.getenv('AIRFLOW_HOME', str(pathlib.Path.home() / 'airflow'))
-sys.path.insert(0, airflow_home)
-```
-
-### Task Failures
-
-**Issue**: Task shows red (failed)
-
-**Solution**:
-1. Click on task → **Log**
-2. Read error message
-3. Common issues:
-   - Missing data files in `data/raw/`
-   - Configuration errors in `config/config.yaml`
-   - Model not trained (run training pipeline first)
-
-### Docker Issues
-
-**Issue**: Containers won't start
-
-**Solutions**:
-```powershell
-# Rebuild image
-docker-compose build --no-cache
-
-# Remove old containers
-docker-compose down -v
-
-# Check Docker status
-docker ps -a
-```
-
-### Performance Issues
-
-**Issue**: Slow execution
-
-**Solutions**:
-- Increase Docker memory allocation (Settings → Resources)
-- Reduce `n_estimators` in config
-- Use fewer batches for testing
-
----
-
-## Best Practices
-
-### Development Workflow
-
-1. **Make changes** to DAG files locally
-2. **Save** - changes auto-sync to Docker (volumes mounted)
-3. **Refresh** Airflow UI
-4. **Test** by triggering DAG
-
-### Production Considerations
-
-1. **Schedule**: Set `schedule_interval` in DAG definition
-   ```python
-   schedule_interval='@daily'  # Run daily
-   ```
-
-2. **Alerts**: Configure email notifications
-   ```python
-   default_args = {
-       'email': ['your-email@example.com'],
-       'email_on_failure': True,
-       'email_on_retry': True,
-   }
-   ```
-
-3. **Retries**: Already configured with 2 retries and 5-minute delay
-
-4. **Monitoring**: Use XCom to pass metrics between tasks
-
----
-
-## Advanced Features
-
-### Viewing XCom Variables
-
-XCom stores inter-task communication data:
-
-1. **Admin** → **XComs**
-2. Filter by DAG ID and Task ID
-3. View metrics passed between tasks
-
-### Task Dependencies
-
-Defined using bit-shift operators:
-
-```python
-# Sequential
-task_a >> task_b >> task_c
-
-# Parallel then merge
-[task_a, task_b] >> task_c
-
-# Complex
-task_a >> [task_b, task_c] >> task_d
-```
-
-### Dynamic Task Generation
-
-The monitoring pipeline uses dynamic task creation:
-
-```python
-for batch_id in [7, 8, 9, 10]:
-    PythonOperator(
-        task_id=f'monitor_batch_{batch_id}',
-        python_callable=monitor_batch,
-        op_kwargs={'batch_id': batch_id},
-    )
 ```
 
 ---
@@ -530,36 +397,18 @@ Raw Data (Batches 1-10)
 
 ---
 
-## Project Team
+## Project Owner
 
-- **Owner**: mlops_team
+- **Name**: Hariharan Chandrasekar
+- **NUID**: 002312867
 - **Course**: MLOps - Term 3
-- **Assignment**: Airflow Lab 1
+- **Lab Assignment**: Airflow Lab 1
 
 ---
 
 ## License
 
 This project is for educational purposes as part of the MLOps course curriculum.
-
----
-
-## Next Steps
-
-1. **Run Training Pipeline**: Execute `01_training_pipeline`
-2. **Review Metrics**: Check logs and generated reports
-3. **Run Monitoring**: Execute `02_monitoring_pipeline`
-4. **Analyze Drift**: Review drift reports in `data/drift_reports/`
-5. **Experiment**: Modify thresholds and retrain
-
----
-
-## Support
-
-For issues or questions:
-1. Check **Troubleshooting** section above
-2. Review Airflow logs: `docker-compose logs airflow-scheduler`
-3. Check task logs in Airflow UI
 
 ---
 
